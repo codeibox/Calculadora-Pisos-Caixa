@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora de Pisos Caixa</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    body {
+      background: linear-gradient(200deg, #202020, #2b2b2a);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-family: sans-serif;
+      color: white;
+      height: 100vh;
+    }
+
+    .container {
+      background-color: rgba(0, 0, 0, 0.3);
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: rgba(0, 0, 0, 0.3);
+    }
+
+    .form-group label {
+      font-size: 1rem;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    .form-control {
+      background-color: rgba(0, 0, 0, 0.664);
+      border: 2px solid #fff;
+      color: #fff;
+    }
+
+    .btn {
+      background-color: rgb(26, 156, 0);
+      font-weight: 600;
+      transition: 0.2s;
+    }
+
+    .btn:hover {
+      background-color: rgb(0, 177, 53);
+      transition: 0.2s;
+    }
+
+    .copy {
+      font-size: 0.8rem;
+      text-align: center;
+      padding: 20px 0 0;
+    }
+
+    #resultado {
+      font-size: 14px;
+      font-weight: 400;
+      text-align: center;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h3 class="text-center">Calculadora de Pisos Caixa</h3>
+    <form>
+      <div class="form-group">
+        <label for="altura">Altura:</label>
+        <input type="text" class="form-control altura" id="altura">
+      </div>
+      <div class="form-group">
+        <label for="comprimento">Comprimento:</label>
+        <input type="text" class="form-control comprimento" id="comprimento">
+      </div>
+      <div class="form-group">
+        <label for="tamanhocaixa">Caixa <sup>m²</sup>:</label>
+        <input type="text" class="form-control tamanhocaixa" id="tamanhocaixa">
+      </div>
+      <button type="button" class="btn btn-success btn-block" onclick="calcularCx()">Calcular</button>
+    </form>
+    <div id="resultado"></div>
+  </div>
+  <p class="copy">Feito por: José Augusto</p>
+  
+<script>
+function calcularCx() {
+
+  const altura = document.querySelector('.altura').value.replace(',', '.');
+  const comprimento = document.querySelector('.comprimento').value.replace(',', '.');
+  const tamanhoCaixa = document.querySelector('.tamanhocaixa').value.replace(',', '.');
+  const resultado = Math.round(tamanhoCaixa / (altura * comprimento));
+
+    if (!altura || !comprimento || !tamanhoCaixa) {
+      alert('Preencha todos os campos!');
+      document.querySelector('#resultado').innerHTML = '';
+    } else {
+        if(resultado == 1) {
+          document.querySelector('#resultado').innerHTML = resultado + ' peça';
+        } else {
+          document.querySelector('#resultado').innerHTML = resultado + ' peças';
+        }
+      }
+}
+</script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
